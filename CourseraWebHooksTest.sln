@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35913.81 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseraWebHooksTest", "CourseraWebHooksTest\CourseraWebHooksTest.csproj", "{233EA4D4-031C-424F-9162-A68A4373AB2B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{233EA4D4-031C-424F-9162-A68A4373AB2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{233EA4D4-031C-424F-9162-A68A4373AB2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{233EA4D4-031C-424F-9162-A68A4373AB2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{233EA4D4-031C-424F-9162-A68A4373AB2B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4DC80C52-1DD4-4389-B441-62BD9084411B}
+	EndGlobalSection
+EndGlobal
