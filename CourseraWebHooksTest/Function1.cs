@@ -10,6 +10,8 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Text.Json;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace CourseraWebHooksTest
 {
@@ -22,6 +24,19 @@ namespace CourseraWebHooksTest
         {
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             log.LogInformation(requestBody);
+            
+            var expectedHash = ComputeSha1(requestBody, "salam");
+            var actualHash = req.Headers["x-hub-signature"];
+            if(!actualHash.Equals($"sha1={expectedHash}"))
+            {
+                return new UnauthorizedObjectResult(null);
+            }
+
+
+            if(string.IsNullOrWhiteSpace(requestBody))
+            {
+                return new BadRequestObjectResult("No payload");
+            }
 
             var data = System.Text.Json.JsonSerializer.Deserialize<WebhookPayload>(requestBody, new JsonSerializerOptions
             {
@@ -37,6 +52,17 @@ namespace CourseraWebHooksTest
             {
                 return new BadRequestObjectResult("Invalid payload for Wiki event");
             }
+        }
+
+        public static string ComputeSha1(string payload, string secret)
+        {
+            using var hmac = new HMACSHA1(Encoding.UTF8.GetBytes(secret));
+            var hashBytes = hmac.ComputeHash(Encoding.UTF8.GetBytes(payload));
+
+            var sb = new StringBuilder(hashBytes.Length * 2);
+            foreach (var b in hashBytes)
+                sb.Append(b.ToString("x2")); // lowercase hex
+            return sb.ToString();
         }
     }
 
